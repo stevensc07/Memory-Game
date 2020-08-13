@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#A1F1F1F1">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="72dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/highest_label_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/again" />
+
+            <TextView
+                android:id="@+id/score_label_text"
+                android:layout_width="86dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Current score"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/timer_text"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/highest_label_text"
+                android:layout_width="69dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Highest score"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/timer_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/score_text"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="8dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="@+id/score_label_text"
+                app:layout_constraintStart_toStartOf="@+id/score_label_text"
+                app:layout_constraintTop_toBottomOf="@+id/score_label_text" />
+
+            <TextView
+                android:id="@+id/highest_score_text"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="8dp"
+                android:text="567"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/highest_label_text"
+                app:layout_constraintStart_toStartOf="@+id/highest_label_text"
+                app:layout_constraintTop_toBottomOf="@+id/highest_label_text" />
+
+            <TextView
+                android:id="@+id/timer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="Timer"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/highest_label_text"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/score_label_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:entries="@array/seconds"
+                android:padding="5dp"
+                android:spinnerMode="dropdown"
+
+                app:layout_constraintEnd_toEndOf="@+id/timer_text"
+                app:layout_constraintStart_toStartOf="@+id/timer_text"
+                app:layout_constraintTop_toBottomOf="@+id/timer_text" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="highest_score_text,score_text,spinner1,timer_text"
+                tools:layout_editor_absoluteY="731dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="135dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="135dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton16"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton17"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton19"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton15"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton16"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton20"
+                android:layout_width="135dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton21"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton15"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton21"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton22"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton20"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton17"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton22"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton21"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton19"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton19"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton17"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton18"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton16"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton18"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton11"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton6"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton18"
+                android:layout_width="136dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageButton16"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton7"
+                app:srcCompat="@drawable/question_mark" />
+
+            <ImageButton
+                android:id="@+id/imageButton15"
+                android:layout_width="135dp"
+                android:layout_height="140dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton17"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton11"
+                app:srcCompat="@drawable/question_mark" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</layout>
