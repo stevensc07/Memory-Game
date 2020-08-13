@@ -94,7 +94,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/spinner"
 
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="highest_score_text,score_text,spinner1,timer_text"
+                app:constraint_referenced_ids="highest_score_text,score_text,spinner,timer_text"
                 tools:layout_editor_absoluteY="731dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,6 +131,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/imageButton11"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton6"
                 app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/question_mark" />
@@ -167,6 +168,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/imageButton15"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton16"
                 app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton4"
                 app:srcCompat="@drawable/question_mark" />
@@ -191,6 +193,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton21"
                 app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton15"
                 app:srcCompat="@drawable/question_mark" />
@@ -263,6 +266,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/imageButton20"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton17"
                 app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton11"
                 app:srcCompat="@drawable/question_mark" />

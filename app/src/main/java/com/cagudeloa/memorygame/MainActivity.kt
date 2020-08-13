@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun spinnerFunction() {
-        spinner1.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
 
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
