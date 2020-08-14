@@ -7,9 +7,10 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
+    var timeToPlay = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             play.showAnimals()
             // Hide images after countDown reaches zero
             play.hideImages()
+            timeToPlay = !timeToPlay
         }
     }
 }

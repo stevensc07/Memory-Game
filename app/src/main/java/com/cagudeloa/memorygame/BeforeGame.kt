@@ -63,13 +63,13 @@ class BeforeGame(bind: ActivityMainBinding) {
             override fun onTick(p0: Long) {
                 val timeLeft = p0/1000+1
                 binding.countDownText.text = timeLeft.toString()
+                binding.mainButton.visibility = View.GONE
             }
 
             override fun onFinish() {
                 val resource = R.drawable.question_mark
                 binding.apply {
-                    countDownText.text = "0"
-                    mainButton.visibility = View.GONE
+                    countDownText.text = ""
                     image1.setImageResource(resource)
                     image2.setImageResource(resource)
                     image3.setImageResource(resource)
