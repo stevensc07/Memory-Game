@@ -18,11 +18,12 @@ class MainActivity : AppCompatActivity(){
 
         binding.mainButton.setOnClickListener {
             // Show images and countDown timer
-            val play = BeforeGame(binding)
-            play.showAnimals()
+            val beforeGame = BeforeGame(binding)
+            beforeGame.showAnimals()
             // Hide images after countDown reaches zero
-            play.hideImages()
+            beforeGame.hideImages()
             timeToPlay = !timeToPlay
+            beforeGame.setListeners()
         }
     }
 }

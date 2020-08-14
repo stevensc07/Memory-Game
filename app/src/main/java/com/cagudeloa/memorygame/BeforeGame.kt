@@ -3,17 +3,18 @@ package com.cagudeloa.memorygame
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.ImageView
 import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 
 class BeforeGame(bind: ActivityMainBinding) {
     private var binding: ActivityMainBinding = bind
     private lateinit var countDownTimer: CountDownTimer
-    private val initialCountDown: Long = 10000
+    private val initialCountDown: Long = 100000
     private val countDownInterval: Long = 1000
 
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
+    private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
     private val animals = listOf<Int>(
         R.drawable.butterfly,
         R.drawable.color_parrot,
@@ -30,11 +31,15 @@ class BeforeGame(bind: ActivityMainBinding) {
         R.drawable.white_dog
     )
 
+    private val imageResources: List<ImageView> = listOf(
+        binding.image1, binding.image2, binding.image3, binding.image4, binding.image5, binding.image6,
+        binding.image7, binding.image8, binding.image9, binding.image10, binding.image11, binding.image12
+    )
+
     fun showAnimals() {
         listNumbers.shuffle()
-        val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
         selectedAnimal.shuffle()
-        for (i in 1..11 step 2){
+        for (i in 1..11 step 2){    // Each of the image places
             chooseImageLocation(listNumbers[i-1], selectedAnimal[i]-1)
             chooseImageLocation(listNumbers[i], selectedAnimal[i]-1)
         }
@@ -42,18 +47,18 @@ class BeforeGame(bind: ActivityMainBinding) {
 
      private fun chooseImageLocation(index: Int, selectedImage: Int){
         val drawableResource = when(index){
-            1 -> binding.image1
-            2 -> binding.image2
-            3 -> binding.image3
-            4 -> binding.image4
-            5 -> binding.image5
-            6 -> binding.image6
-            7 -> binding.image7
-            8 -> binding.image8
-            9 -> binding.image9
-            10 -> binding.image10
-            11 -> binding.image11
-            else -> binding.image12
+            1 -> imageResources[0]
+            2 -> imageResources[1]
+            3 -> imageResources[2]
+            4 -> imageResources[3]
+            5 -> imageResources[4]
+            6 -> imageResources[5]
+            7 -> imageResources[6]
+            8 -> imageResources[7]
+            9 -> imageResources[8]
+            10 -> imageResources[9]
+            11 -> imageResources[10]
+            else -> imageResources[11]
         }
         drawableResource.setImageResource(animals[selectedImage])
     }
@@ -63,28 +68,32 @@ class BeforeGame(bind: ActivityMainBinding) {
             override fun onTick(p0: Long) {
                 val timeLeft = p0/1000+1
                 binding.countDownText.text = timeLeft.toString()
-                binding.mainButton.visibility = View.GONE
+                //binding.mainButton.visibility = View.GONE
             }
 
             override fun onFinish() {
                 val resource = R.drawable.question_mark
-                binding.apply {
-                    countDownText.text = ""
-                    image1.setImageResource(resource)
-                    image2.setImageResource(resource)
-                    image3.setImageResource(resource)
-                    image4.setImageResource(resource)
-                    image5.setImageResource(resource)
-                    image6.setImageResource(resource)
-                    image7.setImageResource(resource)
-                    image8.setImageResource(resource)
-                    image9.setImageResource(resource)
-                    image10.setImageResource(resource)
-                    image11.setImageResource(resource)
-                    image12.setImageResource(resource)
+                binding.countDownText.text = ""
+                for (i in 0..11){
+                    imageResources[i].setImageResource(resource)
                 }
             }
         }
         countDownTimer.start()
+    }
+
+    fun setListeners(){
+        for (item in imageResources){
+            item.setOnClickListener {
+                callMe(item)
+            }
+        }
+    }
+
+    private fun callMe(v: ImageView){
+        Log.d("testing", "Image position: ${listNumbers.toString()}")
+        Log.d("testing", "Animals: ${selectedAnimal[1].toString()}, ${selectedAnimal[3].toString()}, ${selectedAnimal[5].toString()}, ${selectedAnimal[7].toString()}, ${selectedAnimal[9].toString()}, ${selectedAnimal[11].toString()}")
+        if(v.id==R.id.image1) Log.v("testing", "1 tapped")
+
     }
 }
