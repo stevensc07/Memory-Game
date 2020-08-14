@@ -15,6 +15,7 @@
     <string name="grid_11">Grid 11</string>
     <string name="grid_10">Grid 10</string>
     <string name="play_button">Play button</string>
+    <string name="timer_text">Timer</string>
     <string-array name="seconds">
         <item>3</item>
         <item>5</item>

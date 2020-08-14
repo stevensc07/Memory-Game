@@ -1,10 +1,17 @@
 package com.cagudeloa.memorygame
 
+import android.os.CountDownTimer
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 
-class Play(bind: ActivityMainBinding) {
+class BeforeGame(bind: ActivityMainBinding) {
     private var binding: ActivityMainBinding = bind
+    private lateinit var countDownTimer: CountDownTimer
+    private val initialCountDown: Long = 10000
+    private val countDownInterval: Long = 1000
 
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val animals = listOf<Int>(
@@ -51,4 +58,33 @@ class Play(bind: ActivityMainBinding) {
         drawableResource.setImageResource(animals[selectedImage])
     }
 
+    fun hideImages(){
+        countDownTimer = object: CountDownTimer(initialCountDown, countDownInterval){
+            override fun onTick(p0: Long) {
+                val timeLeft = p0/1000+1
+                binding.countDownText.text = timeLeft.toString()
+            }
+
+            override fun onFinish() {
+                val resource = R.drawable.question_mark
+                binding.apply {
+                    countDownText.text = "0"
+                    mainButton.visibility = View.GONE
+                    image1.setImageResource(resource)
+                    image2.setImageResource(resource)
+                    image3.setImageResource(resource)
+                    image4.setImageResource(resource)
+                    image5.setImageResource(resource)
+                    image6.setImageResource(resource)
+                    image7.setImageResource(resource)
+                    image8.setImageResource(resource)
+                    image9.setImageResource(resource)
+                    image10.setImageResource(resource)
+                    image11.setImageResource(resource)
+                    image12.setImageResource(resource)
+                }
+            }
+        }
+        countDownTimer.start()
+    }
 }
