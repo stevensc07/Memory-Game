@@ -1,17 +1,19 @@
 package com.cagudeloa.memorygame
 
+import android.content.DialogInterface
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 
-class BeforeGame(bind: ActivityMainBinding) {
-    private var binding: ActivityMainBinding = bind
+class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
+    private var binding = bind
+    private var initialCountDown = mainCounter
     private val score = Score("200", "0")
     private lateinit var countDownTimer: CountDownTimer
-    private val initialCountDown: Long = 15000
     private val countDownInterval: Long = 1000
     private var animalLocation = 0
     private var isFirstImage = true
@@ -103,11 +105,15 @@ class BeforeGame(bind: ActivityMainBinding) {
                 if (mainCounter<=12){
                     callMe(item)
                     if(mainCounter==12){
-                        if(binding.scoreText.text.toString().toInt()> binding.highestScoreText.text.toString().toInt()){
+                        // Check if player got a highest score than the current one
+                        if(binding.scoreText.text.toString().toInt() > binding.highestScoreText.text.toString().toInt()){
                             binding.invalidateAll()
                             binding.highestScoreText.text = binding.scoreText.text
                         }
                         binding.mainButton.visibility = View.VISIBLE
+                        
+                        // Reduce countDown in one second for each new round
+                        initialCountDown -= 1000
                     }
                 }
             }
@@ -115,14 +121,14 @@ class BeforeGame(bind: ActivityMainBinding) {
     }
 
     private fun callMe(v: ImageView){
-        var image2Position = 0
+        var image2Position: Int
         if(isFirstImage) {
             isFirstImage = !isFirstImage
             // Set the 'selected' drawable in the chosen imageView slot
             val image1Position = imagePosition(v)
             alreadySelected = image1Position
             // Find tapped1 in listNumbers and its couple (where the other image is)
-            image2Position = listNumbers.indexOf(image1Position.toInt())
+            image2Position = listNumbers.indexOf(image1Position)
             if (image2Position % 2 == 0) {
                 image2Position += 1
             } else {
@@ -132,7 +138,6 @@ class BeforeGame(bind: ActivityMainBinding) {
             image2Position = listNumbers[image2Position]
             currentSecondImage = image2Position
             ////Log.v("testing", "Tapped image at: $image1Position. Couple image at: $image2Position")
-            //Log.v("testing", "Animal is $animalLocation")
             chooseImageLocation(image1Position, 13)
         }else{
             // An image was selected already, verify the chosen image now, is same as previous
@@ -141,23 +146,36 @@ class BeforeGame(bind: ActivityMainBinding) {
             isFirstImage = !isFirstImage
             val image1Position = imagePosition(v)
             if(image1Position == currentSecondImage){
-                //Log.v("testing", "Correct")
                 binding.invalidateAll()
+                // Correct choice, increment current score by 10 points
                 binding.scoreText.text = (binding.scoreText.text.toString().toInt()+10).toString()
                 chooseImageLocation(image1Position, animalLocation-1)
                 chooseImageLocation(alreadySelected, animalLocation-1)
             }else{
-                //Log.v("testing", "Incorrect")
-                binding.invalidateAll()
-                binding.scoreText.text = (binding.scoreText.text.toString().toInt()-20).toString()
-                chooseImageLocation(image1Position, 14)
-                chooseImageLocation(alreadySelected, 14)
+                if((binding.scoreText.text.toString().toInt() -20) <= 0){
+                    gameOverDialog()
+                    binding.invalidateAll()
+                    binding.scoreText.text = "200"
+                    initialCountDown = 15000
+                    binding.mainButton.visibility = View.VISIBLE
+                }else{
+                    binding.invalidateAll()
+                    // Incorrect choice, decrease current score by 20 points
+                    binding.scoreText.text = (binding.scoreText.text.toString().toInt()-20).toString()
+                    chooseImageLocation(image1Position, 14)
+                    chooseImageLocation(alreadySelected, 14)
+                }
             }
-            //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySeleted")
-            //chooseImageLocation(currentSecondImage, 13)
+            //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySelected")
         }
     }
 
+    private fun gameOverDialog(){
+        //TODO Game Over. Just show dialog to play again. All variables already restarted
+        //TODO Also make images cannot be clicked when still visible. IMPORTANT
+        Log.v("testing", "Game Over, show dialog to play again")
+    }
+    
     private fun imagePosition(view: ImageView): Int{
         return when (view.id) {
             R.id.image1 -> "1"

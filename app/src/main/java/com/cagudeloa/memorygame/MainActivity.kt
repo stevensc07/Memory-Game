@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,  R.layout.activity_main)
 
-        val beforeGame = BeforeGame(binding)
+        val counter:Long = 15000
+        val beforeGame = BeforeGame(binding, counter)
         beforeGame.setScores()
 
         binding.mainButton.setOnClickListener {
