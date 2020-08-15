@@ -14,6 +14,7 @@ class BeforeGame(bind: ActivityMainBinding) {
     private val countDownInterval: Long = 1000
     private var animalLocation = 0
     private var isFirstImage = true
+    private var currentSecondImage = 0
     private var mainCounter = 0
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
@@ -92,7 +93,7 @@ class BeforeGame(bind: ActivityMainBinding) {
         for (item in imageResources){
             item.setOnClickListener {
                 mainCounter++
-                if (mainCounter<=12){
+                if (mainCounter<=120){  //TODO change to 12
                     callMe(item)
                 }else{
                     Log.v("testing", "Game ended")
@@ -102,9 +103,42 @@ class BeforeGame(bind: ActivityMainBinding) {
     }
 
     private fun callMe(v: ImageView){
-        //Log.d("testing", "Image position: ${listNumbers.toString()}")
-        //Log.d("testing", "Animals: ${selectedAnimal[1].toString()}, ${selectedAnimal[3].toString()}, ${selectedAnimal[5].toString()}, ${selectedAnimal[7].toString()}, ${selectedAnimal[9].toString()}, ${selectedAnimal[11].toString()}")
-        val image1Position = when(v.id){
+        var image2Position = 0
+        if(isFirstImage) {
+            isFirstImage = !isFirstImage
+            // Set the 'selected' drawable in the chosen imageView slot
+            val image1Position = imagePosition(v)
+            // Find tapped1 in listNumbers and its couple (where the other image is)
+            image2Position = listNumbers.indexOf(image1Position.toInt())
+            if (image2Position % 2 == 0) {
+                image2Position += 1
+            } else {
+                image2Position -= 1
+            }
+            animalLocation = selectedAnimal[(image2Position / 2) * 2 + 1]
+            image2Position = listNumbers[image2Position]
+            currentSecondImage = image2Position
+            ////Log.v("testing", "Tapped image at: $image1Position. Couple image at: $image2Position")
+            //Log.v("testing", "Animal is $animalLocation")
+            ////chooseImageLocation(image1Position.toInt(), 13)
+        }else{
+            // An image was selected already, verify the chosen image now, is same as previous
+            // If so, show the images of that animals
+            // Else, fill both imageViews with 'incorrect' drawable
+            isFirstImage = !isFirstImage
+            val image1Position = imagePosition(v)
+            if(image1Position == currentSecondImage){
+                Log.v("testing", "Correct")
+            }else{
+                Log.v("testing", "Incorrect")
+            }
+            ////Log.v("resting", "$image1Position and $currentSecondImage")
+
+            //chooseImageLocation(currentSecondImage, 13)
+        }
+    }
+    private fun imagePosition(view: ImageView): Int{
+        return when (view.id) {
             R.id.image1 -> "1"
             R.id.image2 -> "2"
             R.id.image3 -> "3"
@@ -117,16 +151,6 @@ class BeforeGame(bind: ActivityMainBinding) {
             R.id.image10 -> "10"
             R.id.image11 -> "11"
             else -> "12"
-        }
-        // Find tapped1 in listNumbers and its couple (where the other image is)
-        var image2Position =listNumbers.indexOf(image1Position.toInt())
-        if(image2Position % 2 == 0){
-            image2Position += 1
-        }else{
-            image2Position -= 1
-        }
-        animalLocation = selectedAnimal[(image2Position/2)*2+1]
-        Log.v("testing", "Tapped image at: $image1Position. Couple image at: ${listNumbers[image2Position]}")
-        Log.v("testing", "Animal is $animalLocation")
+        }.toInt()
     }
 }
