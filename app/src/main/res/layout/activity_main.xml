@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
+    <data>
+        <variable
+            name="score"
+            type="com.cagudeloa.memorygame.Score" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -31,7 +37,7 @@
                 android:id="@+id/score_label_text"
                 android:layout_width="86dp"
                 android:layout_height="56dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/current_score"
                 android:textAlignment="center"
                 android:textSize="24sp"
@@ -42,12 +48,12 @@
 
             <TextView
                 android:id="@+id/highest_label_text"
-                android:layout_width="69dp"
+                android:layout_width="70dp"
                 android:layout_height="46dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/highest_score"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/main_button"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/timer_text"
@@ -59,7 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="39dp"
                 android:layout_marginBottom="8dp"
-                android:text="0"
+                android:text="@={score.currentScore}"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="8dp"
-                android:text="567"
+                android:text="@={score.highestScore}"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/highest_label_text"

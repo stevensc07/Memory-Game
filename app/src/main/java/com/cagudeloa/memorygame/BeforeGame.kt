@@ -9,13 +9,14 @@ import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 class BeforeGame(bind: ActivityMainBinding) {
     private var binding: ActivityMainBinding = bind
+    private val score = Score("200", "0")
     private lateinit var countDownTimer: CountDownTimer
     private val initialCountDown: Long = 15000
     private val countDownInterval: Long = 1000
     private var animalLocation = 0
     private var isFirstImage = true
     private var currentSecondImage = 0
-    private var alreadySeleted = 0
+    private var alreadySelected = 0
     private var mainCounter = 0
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
@@ -44,7 +45,12 @@ class BeforeGame(bind: ActivityMainBinding) {
         binding.image7, binding.image8, binding.image9, binding.image10, binding.image11, binding.image12
     )
 
+    fun setScores(){
+        binding.score = score
+    }
+
     fun showAnimals() {
+        mainCounter = 0
         listNumbers.shuffle()
         selectedAnimal.shuffle()
         for (i in 1..11 step 2){    // Each of the image places
@@ -96,8 +102,13 @@ class BeforeGame(bind: ActivityMainBinding) {
                 mainCounter++
                 if (mainCounter<=12){
                     callMe(item)
-                }else{
-                    Log.v("testing", "Game ended")
+                    if(mainCounter==12){
+                        if(binding.scoreText.text.toString().toInt()> binding.highestScoreText.text.toString().toInt()){
+                            binding.invalidateAll()
+                            binding.highestScoreText.text = binding.scoreText.text
+                        }
+                        binding.mainButton.visibility = View.VISIBLE
+                    }
                 }
             }
         }
@@ -109,7 +120,7 @@ class BeforeGame(bind: ActivityMainBinding) {
             isFirstImage = !isFirstImage
             // Set the 'selected' drawable in the chosen imageView slot
             val image1Position = imagePosition(v)
-            alreadySeleted = image1Position
+            alreadySelected = image1Position
             // Find tapped1 in listNumbers and its couple (where the other image is)
             image2Position = listNumbers.indexOf(image1Position.toInt())
             if (image2Position % 2 == 0) {
@@ -131,12 +142,16 @@ class BeforeGame(bind: ActivityMainBinding) {
             val image1Position = imagePosition(v)
             if(image1Position == currentSecondImage){
                 //Log.v("testing", "Correct")
+                binding.invalidateAll()
+                binding.scoreText.text = (binding.scoreText.text.toString().toInt()+10).toString()
                 chooseImageLocation(image1Position, animalLocation-1)
-                chooseImageLocation(alreadySeleted, animalLocation-1)
+                chooseImageLocation(alreadySelected, animalLocation-1)
             }else{
                 //Log.v("testing", "Incorrect")
+                binding.invalidateAll()
+                binding.scoreText.text = (binding.scoreText.text.toString().toInt()-20).toString()
                 chooseImageLocation(image1Position, 14)
-                chooseImageLocation(alreadySeleted, 14)
+                chooseImageLocation(alreadySelected, 14)
             }
             //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySeleted")
             //chooseImageLocation(currentSecondImage, 13)

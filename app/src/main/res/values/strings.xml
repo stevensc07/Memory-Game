@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Memory Game</string>
-    <string name="current_score">Current score</string>
-    <string name="highest_score">Highest score</string>
     <string name="grid_1">Grid 1</string>
     <string name="grid_2">Grid 2</string>
     <string name="grid_3">Grid 3</string>
@@ -16,6 +14,8 @@
     <string name="grid_10">Grid 10</string>
     <string name="play_button">Play button</string>
     <string name="timer_text">Timer</string>
+    <string name="current_score">Current score</string>
+    <string name="highest_score">Highest score</string>
     <string-array name="seconds">
         <item>3</item>
         <item>5</item>
