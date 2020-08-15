@@ -10,11 +10,12 @@ import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 class BeforeGame(bind: ActivityMainBinding) {
     private var binding: ActivityMainBinding = bind
     private lateinit var countDownTimer: CountDownTimer
-    private val initialCountDown: Long = 100000
+    private val initialCountDown: Long = 15000
     private val countDownInterval: Long = 1000
     private var animalLocation = 0
     private var isFirstImage = true
     private var currentSecondImage = 0
+    private var alreadySeleted = 0
     private var mainCounter = 0
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
@@ -93,7 +94,7 @@ class BeforeGame(bind: ActivityMainBinding) {
         for (item in imageResources){
             item.setOnClickListener {
                 mainCounter++
-                if (mainCounter<=120){  //TODO change to 12
+                if (mainCounter<=12){
                     callMe(item)
                 }else{
                     Log.v("testing", "Game ended")
@@ -108,6 +109,7 @@ class BeforeGame(bind: ActivityMainBinding) {
             isFirstImage = !isFirstImage
             // Set the 'selected' drawable in the chosen imageView slot
             val image1Position = imagePosition(v)
+            alreadySeleted = image1Position
             // Find tapped1 in listNumbers and its couple (where the other image is)
             image2Position = listNumbers.indexOf(image1Position.toInt())
             if (image2Position % 2 == 0) {
@@ -120,7 +122,7 @@ class BeforeGame(bind: ActivityMainBinding) {
             currentSecondImage = image2Position
             ////Log.v("testing", "Tapped image at: $image1Position. Couple image at: $image2Position")
             //Log.v("testing", "Animal is $animalLocation")
-            ////chooseImageLocation(image1Position.toInt(), 13)
+            chooseImageLocation(image1Position, 13)
         }else{
             // An image was selected already, verify the chosen image now, is same as previous
             // If so, show the images of that animals
@@ -128,15 +130,19 @@ class BeforeGame(bind: ActivityMainBinding) {
             isFirstImage = !isFirstImage
             val image1Position = imagePosition(v)
             if(image1Position == currentSecondImage){
-                Log.v("testing", "Correct")
+                //Log.v("testing", "Correct")
+                chooseImageLocation(image1Position, animalLocation-1)
+                chooseImageLocation(alreadySeleted, animalLocation-1)
             }else{
-                Log.v("testing", "Incorrect")
+                //Log.v("testing", "Incorrect")
+                chooseImageLocation(image1Position, 14)
+                chooseImageLocation(alreadySeleted, 14)
             }
-            ////Log.v("resting", "$image1Position and $currentSecondImage")
-
+            //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySeleted")
             //chooseImageLocation(currentSecondImage, 13)
         }
     }
+
     private fun imagePosition(view: ImageView): Int{
         return when (view.id) {
             R.id.image1 -> "1"
