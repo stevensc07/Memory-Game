@@ -91,9 +91,31 @@ class BeforeGame(bind: ActivityMainBinding) {
     }
 
     private fun callMe(v: ImageView){
-        Log.d("testing", "Image position: ${listNumbers.toString()}")
-        Log.d("testing", "Animals: ${selectedAnimal[1].toString()}, ${selectedAnimal[3].toString()}, ${selectedAnimal[5].toString()}, ${selectedAnimal[7].toString()}, ${selectedAnimal[9].toString()}, ${selectedAnimal[11].toString()}")
-        if(v.id==R.id.image1) Log.v("testing", "1 tapped")
-
+        //Log.d("testing", "Image position: ${listNumbers.toString()}")
+        //Log.d("testing", "Animals: ${selectedAnimal[1].toString()}, ${selectedAnimal[3].toString()}, ${selectedAnimal[5].toString()}, ${selectedAnimal[7].toString()}, ${selectedAnimal[9].toString()}, ${selectedAnimal[11].toString()}")
+        val image1Position = when(v.id){
+            R.id.image1 -> "1"
+            R.id.image2 -> "2"
+            R.id.image3 -> "3"
+            R.id.image4 -> "4"
+            R.id.image5 -> "5"
+            R.id.image6 -> "6"
+            R.id.image7 -> "7"
+            R.id.image8 -> "8"
+            R.id.image9 -> "9"
+            R.id.image10 -> "10"
+            R.id.image11 -> "11"
+            else -> "12"
+        }
+        // Find tapped1 in listNumbers and its couple (where the other image is)
+        var image2Position =listNumbers.indexOf(image1Position.toInt())
+        if(image2Position % 2 == 0){
+            image2Position += 1
+            //Log.v("testing", "Tapped image at: $image1Position. Couple image at: ${listNumbers[image2Position]}")
+        }else{
+            image2Position -= 1
+            //Log.v("testing", "Tapped image at: $image1Position. Couple image at: ${listNumbers[image2Position]}")
+        }
+        Log.v("testing", "Animal is ${selectedAnimal[(image2Position/2)*2+1]}")
     }
 }
