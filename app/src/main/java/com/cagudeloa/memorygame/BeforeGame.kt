@@ -12,7 +12,9 @@ class BeforeGame(bind: ActivityMainBinding) {
     private lateinit var countDownTimer: CountDownTimer
     private val initialCountDown: Long = 100000
     private val countDownInterval: Long = 1000
-
+    private var animalLocation = 0
+    private var isFirstImage = true
+    private var mainCounter = 0
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
     private val animals = listOf<Int>(
@@ -28,7 +30,11 @@ class BeforeGame(bind: ActivityMainBinding) {
         R.drawable.parrot,
         R.drawable.rabbit,
         R.drawable.sharks,
-        R.drawable.white_dog
+        R.drawable.white_dog,
+
+        R.drawable.select,      // For another purposes, not displaying as posible animals
+        R.drawable.incorrect   // Same as above
+
     )
 
     private val imageResources: List<ImageView> = listOf(
@@ -85,7 +91,12 @@ class BeforeGame(bind: ActivityMainBinding) {
     fun setListeners(){
         for (item in imageResources){
             item.setOnClickListener {
-                callMe(item)
+                mainCounter++
+                if (mainCounter<=12){
+                    callMe(item)
+                }else{
+                    Log.v("testing", "Game ended")
+                }
             }
         }
     }
@@ -111,11 +122,11 @@ class BeforeGame(bind: ActivityMainBinding) {
         var image2Position =listNumbers.indexOf(image1Position.toInt())
         if(image2Position % 2 == 0){
             image2Position += 1
-            //Log.v("testing", "Tapped image at: $image1Position. Couple image at: ${listNumbers[image2Position]}")
         }else{
             image2Position -= 1
-            //Log.v("testing", "Tapped image at: $image1Position. Couple image at: ${listNumbers[image2Position]}")
         }
-        Log.v("testing", "Animal is ${selectedAnimal[(image2Position/2)*2+1]}")
+        animalLocation = selectedAnimal[(image2Position/2)*2+1]
+        Log.v("testing", "Tapped image at: $image1Position. Couple image at: ${listNumbers[image2Position]}")
+        Log.v("testing", "Animal is $animalLocation")
     }
 }
