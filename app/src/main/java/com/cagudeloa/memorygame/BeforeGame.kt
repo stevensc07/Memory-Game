@@ -1,5 +1,6 @@
 package com.cagudeloa.memorygame
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,8 +10,10 @@ import androidx.appcompat.app.AlertDialog
 import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 
-class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
-    private var binding = bind
+class BeforeGame(
+    private var binding: ActivityMainBinding,
+    private var mainCounter: Long,
+    private var context: MainActivity) {
     private var initialCountDown: Long = mainCounter
     private val score = Score("200", "0")
     private lateinit var countDownTimer: CountDownTimer
@@ -19,7 +22,6 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
     private var isFirstImage = true
     private var currentSecondImage = 0
     private var alreadySelected = 0
-    private var mainCounter: Long = 0     // How many images I  have tapped, between 1 and 12
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
     private val animals = listOf<Int>(
@@ -106,6 +108,18 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
         countDownTimer.start()
     }
 
+    private fun showQuestionMark() {
+        val resource = R.drawable.question_mark
+        binding.countDownText.text = ""
+        for (i in 0..11){
+            imageResources[i].setImageResource(resource)
+        }
+        // Image clickable back (for the user to actually be able to play)
+        for (i in imageResources){
+            i.isClickable = true
+        }
+    }
+
     fun setListeners(){
         for (item in imageResources){
             item.setOnClickListener {
@@ -164,6 +178,7 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
                 if((binding.scoreText.text.toString().toInt() -20) <= 0){
                     gameOverDialog()
                     binding.invalidateAll()
+                    //TODO bad things happening here, maybe resetting vars and showing quesionMark in all imageViews
                     binding.scoreText.text = "200"
                     initialCountDown = mainCounter
                     binding.mainButton.visibility = View.VISIBLE
@@ -180,8 +195,11 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
     }
 
     private fun gameOverDialog(){
-        //TODO Game Over. Just show dialog to play again. All variables already restarted
-        //TODO Also make images cannot be clicked when still visible. IMPORTANT
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Oh no")
+        builder.setMessage("Game Over")
+        builder.setPositiveButton("Play again", {dialogInterface: DialogInterface, i -> })
+        builder.show()
         Log.v("testing", "Game Over, show dialog to play again")
     }
     

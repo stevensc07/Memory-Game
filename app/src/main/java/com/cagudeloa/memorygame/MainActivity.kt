@@ -2,9 +2,7 @@ package com.cagudeloa.memorygame
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
@@ -17,8 +15,8 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,  R.layout.activity_main)
 
-        val counter:Long = 15000
-        val beforeGame = BeforeGame(binding, counter)
+        val counter:Long = 5000
+        val beforeGame = BeforeGame(binding, counter, this)
         beforeGame.setScores()
 
         binding.mainButton.setOnClickListener {
