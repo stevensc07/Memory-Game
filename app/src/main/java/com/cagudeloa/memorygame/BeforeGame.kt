@@ -152,6 +152,7 @@ class BeforeGame(
             currentSecondImage = image2Position
             ////Log.v("testing", "Tapped image at: $image1Position. Couple image at: $image2Position")
             chooseImageLocation(image1Position, 13)
+            imageResources[image1Position-1].isClickable = false
         }else{
             // An image was selected already, verify the chosen image now, is same as previous
             // If so, show the images of that animals
@@ -164,12 +165,11 @@ class BeforeGame(
                 binding.scoreText.text = (binding.scoreText.text.toString().toInt()+10).toString()
                 chooseImageLocation(image1Position, animalLocation-1)
                 chooseImageLocation(alreadySelected, animalLocation-1)
+                imageResources[image1Position-1].isClickable = false
             }else{
                 if((binding.scoreText.text.toString().toInt() -20) <= 0){
                     gameOverDialog()
                     binding.invalidateAll()
-                    //
-                    //TODO Set all imeViews to questionMark
                     binding.scoreText.text = "200"
                     val resource = R.drawable.question_mark
                     for (i in 0..11){
@@ -186,6 +186,7 @@ class BeforeGame(
                     binding.scoreText.text = (binding.scoreText.text.toString().toInt()-20).toString()
                     chooseImageLocation(image1Position, 14)
                     chooseImageLocation(alreadySelected, 14)
+                    imageResources[image1Position-1].isClickable = false
                 }
             }
             //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySelected")
