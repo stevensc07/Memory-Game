@@ -85,6 +85,10 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
                 val timeLeft = p0/1000+1
                 binding.countDownText.text = timeLeft.toString()
                 //binding.mainButton.visibility = View.GONE
+                // Avoid player can click over images when visible
+                for (i in imageResources){
+                    i.isClickable = false
+                }
             }
 
             override fun onFinish() {
@@ -92,6 +96,10 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
                 binding.countDownText.text = ""
                 for (i in 0..11){
                     imageResources[i].setImageResource(resource)
+                }
+                // Image clickable back (for the user to actually be able to play)
+                for (i in imageResources){
+                    i.isClickable = true
                 }
             }
         }
