@@ -11,12 +11,14 @@ import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 
 class BeforeGame(
-    private var binding: ActivityMainBinding,
-    private var mainCounter: Long,
-    private var context: MainActivity) {
-    private var initialCountDown: Long = mainCounter
+        private var binding: ActivityMainBinding,
+        private var mainCounter: Long,
+        private var context: MainActivity)
+{
+    private var initialCountDown = mainCounter
     private val score = Score("200", "0")
     private lateinit var countDownTimer: CountDownTimer
+    private var imageCounter: Int = 0
     private val countDownInterval: Long = 1000
     private var animalLocation = 0
     private var isFirstImage = true
@@ -54,7 +56,7 @@ class BeforeGame(
     }
 
     fun showAnimals() {
-        mainCounter = 0
+        imageCounter = 0
         listNumbers.shuffle()
         selectedAnimal.shuffle()
         for (i in 1..11 step 2){    // Each of the image places
@@ -108,25 +110,13 @@ class BeforeGame(
         countDownTimer.start()
     }
 
-    private fun showQuestionMark() {
-        val resource = R.drawable.question_mark
-        binding.countDownText.text = ""
-        for (i in 0..11){
-            imageResources[i].setImageResource(resource)
-        }
-        // Image clickable back (for the user to actually be able to play)
-        for (i in imageResources){
-            i.isClickable = true
-        }
-    }
-
     fun setListeners(){
         for (item in imageResources){
             item.setOnClickListener {
-                mainCounter++
-                if (mainCounter<=12){
+                imageCounter++
+                if (imageCounter<=12){
                     callMe(item)
-                    if(mainCounter==12.toLong()){
+                    if(imageCounter==12){
                         // Check if player got a highest score than the current one
                         if(binding.scoreText.text.toString().toInt() > binding.highestScoreText.text.toString().toInt()){
                             binding.invalidateAll()
@@ -178,8 +168,16 @@ class BeforeGame(
                 if((binding.scoreText.text.toString().toInt() -20) <= 0){
                     gameOverDialog()
                     binding.invalidateAll()
-                    //TODO bad things happening here, maybe resetting vars and showing quesionMark in all imageViews
+                    //
+                    //TODO Set all imeViews to questionMark
                     binding.scoreText.text = "200"
+                    val resource = R.drawable.question_mark
+                    for (i in 0..11){
+                        imageResources[i].setImageResource(resource)
+                    }
+                    for (i in imageResources){
+                        i.isClickable = false
+                    }
                     initialCountDown = mainCounter
                     binding.mainButton.visibility = View.VISIBLE
                 }else{
@@ -198,9 +196,8 @@ class BeforeGame(
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Oh no")
         builder.setMessage("Game Over")
-        builder.setPositiveButton("Play again", {dialogInterface: DialogInterface, i -> })
+        builder.setPositiveButton("Play again") { _: DialogInterface, _ -> }
         builder.show()
-        Log.v("testing", "Game Over, show dialog to play again")
     }
     
     private fun imagePosition(view: ImageView): Int{
