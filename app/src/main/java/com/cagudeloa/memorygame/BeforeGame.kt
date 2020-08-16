@@ -125,7 +125,7 @@ class BeforeGame(
                         binding.mainButton.visibility = View.VISIBLE
                         
                         // Reduce countDown in one second for each new round, 3000 (3 seconds) minimum
-                        if (initialCountDown != 3000.toLong())
+                        if (initialCountDown != 2000.toLong())
                             initialCountDown -= 1000
                     }
                 }

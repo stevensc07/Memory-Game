@@ -5,6 +5,7 @@
     tools:context=".MainActivity">
 
     <data>
+
         <variable
             name="score"
             type="com.cagudeloa.memorygame.Score" />
@@ -12,10 +13,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#A1F1F1F1">
@@ -24,50 +26,41 @@
                 android:id="@+id/main_button"
                 android:layout_width="55dp"
                 android:layout_height="54dp"
-                android:layout_marginTop="28dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/play_button"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/highest_label_text"
+                app:layout_constraintStart_toEndOf="@+id/timer_text"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/play" />
 
             <TextView
                 android:id="@+id/score_label_text"
-                android:layout_width="86dp"
-                android:layout_height="56dp"
+                style="@style/labels"
                 android:layout_marginTop="8dp"
                 android:text="@string/current_score"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/timer_text"
+                app:layout_constraintEnd_toStartOf="@+id/highest_label_text"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/highest_label_text"
-                android:layout_width="70dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="16dp"
+                style="@style/labels"
+                android:layout_marginTop="8dp"
                 android:text="@string/highest_score"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/main_button"
+                app:layout_constraintEnd_toStartOf="@+id/timer_text"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/timer_text"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginEnd="24dp" />
+                app:layout_constraintStart_toEndOf="@+id/score_label_text"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/score_text"
-                android:layout_width="0dp"
-                android:layout_height="39dp"
+                style="@style/numbers"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 android:text="@={score.currentScore}"
-                android:textAlignment="center"
-                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/score_label_text"
                 app:layout_constraintStart_toStartOf="@+id/score_label_text"
@@ -75,231 +68,181 @@
 
             <TextView
                 android:id="@+id/highest_score_text"
-                android:layout_width="0dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="8dp"
+                style="@style/numbers"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
                 android:text="@={score.highestScore}"
-                android:textAlignment="center"
-                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/highest_label_text"
                 app:layout_constraintStart_toStartOf="@+id/highest_label_text"
                 app:layout_constraintTop_toBottomOf="@+id/highest_label_text" />
 
             <TextView
                 android:id="@+id/timer_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/labels"
                 android:layout_marginTop="16dp"
                 android:text="@string/timer_text"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/highest_label_text"
+                app:layout_constraintEnd_toStartOf="@+id/main_button"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/score_label_text"
+                app:layout_constraintStart_toEndOf="@+id/highest_label_text"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/count_down_text"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
+                style="@style/numbers"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="@+id/timer_text"
                 app:layout_constraintStart_toStartOf="@+id/timer_text"
                 app:layout_constraintTop_toBottomOf="@+id/timer_text" />
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="highest_score_text,score_text,count_down_text,timer_text"
-                tools:layout_editor_absoluteY="731dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_constraint"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#46F1F1F1">
 
             <ImageView
                 android:id="@+id/image1"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/grid_1"
                 app:layout_constraintBottom_toTopOf="@+id/image4"
                 app:layout_constraintEnd_toStartOf="@+id/image2"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image2"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/grid_2"
                 app:layout_constraintBottom_toTopOf="@+id/image5"
                 app:layout_constraintEnd_toStartOf="@+id/image3"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image1"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image3"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/grid_3"
                 app:layout_constraintBottom_toTopOf="@+id/image6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image2"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image4"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/grid_4"
-                android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@+id/image7"
                 app:layout_constraintEnd_toStartOf="@+id/image5"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image1"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image5"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/grid_5"
-                android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@+id/image8"
                 app:layout_constraintEnd_toStartOf="@+id/image6"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image4"
                 app:layout_constraintTop_toBottomOf="@+id/image2"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image6"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/grid_6"
                 app:layout_constraintBottom_toTopOf="@+id/image9"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image5"
                 app:layout_constraintTop_toBottomOf="@+id/image3"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image7"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
-                android:scaleType="fitXY"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/grid_7"
                 app:layout_constraintBottom_toTopOf="@+id/image10"
                 app:layout_constraintEnd_toStartOf="@+id/image8"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image4"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image8"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/grid_8"
-                android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@+id/image11"
                 app:layout_constraintEnd_toStartOf="@+id/image9"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image7"
                 app:layout_constraintTop_toBottomOf="@+id/image5"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image9"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/grid_9"
-                android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@+id/image12"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image8"
                 app:layout_constraintTop_toBottomOf="@+id/image6"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image10"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/grid_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/image11"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image7"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image11"
-                android:layout_width="107dp"
-                android:scaleType="fitXY"
-                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/grid_11"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/image12"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image10"
                 app:layout_constraintTop_toBottomOf="@+id/image8"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
 
             <ImageView
                 android:id="@+id/image12"
-                android:layout_width="107dp"
-                android:layout_height="0dp"
-                android:scaleType="fitXY"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/grid_12"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image11"
                 app:layout_constraintTop_toBottomOf="@+id/image9"
-                app:srcCompat="@drawable/question_mark" />
+                app:srcCompat="@drawable/question_mark"
+                style="@style/images" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
     </LinearLayout>
-
 
 
 </layout>
