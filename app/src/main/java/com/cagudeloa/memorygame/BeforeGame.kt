@@ -11,7 +11,7 @@ import com.cagudeloa.memorygame.databinding.ActivityMainBinding
 
 class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
     private var binding = bind
-    private var initialCountDown = mainCounter
+    private var initialCountDown: Long = mainCounter
     private val score = Score("200", "0")
     private lateinit var countDownTimer: CountDownTimer
     private val countDownInterval: Long = 1000
@@ -19,7 +19,7 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
     private var isFirstImage = true
     private var currentSecondImage = 0
     private var alreadySelected = 0
-    private var mainCounter = 0
+    private var mainCounter: Long = 0     // How many images I  have tapped, between 1 and 12
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
     private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
     private val animals = listOf<Int>(
@@ -112,7 +112,7 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
                 mainCounter++
                 if (mainCounter<=12){
                     callMe(item)
-                    if(mainCounter==12){
+                    if(mainCounter==12.toLong()){
                         // Check if player got a highest score than the current one
                         if(binding.scoreText.text.toString().toInt() > binding.highestScoreText.text.toString().toInt()){
                             binding.invalidateAll()
@@ -120,8 +120,9 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
                         }
                         binding.mainButton.visibility = View.VISIBLE
                         
-                        // Reduce countDown in one second for each new round
-                        initialCountDown -= 1000
+                        // Reduce countDown in one second for each new round, 3000 (3 seconds) minimum
+                        if (initialCountDown != 3000.toLong())
+                            initialCountDown -= 1000
                     }
                 }
             }
@@ -164,7 +165,7 @@ class BeforeGame(bind: ActivityMainBinding, mainCounter: Long) {
                     gameOverDialog()
                     binding.invalidateAll()
                     binding.scoreText.text = "200"
-                    initialCountDown = 15000
+                    initialCountDown = mainCounter
                     binding.mainButton.visibility = View.VISIBLE
                 }else{
                     binding.invalidateAll()
