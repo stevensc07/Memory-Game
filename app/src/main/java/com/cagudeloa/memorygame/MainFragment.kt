@@ -12,7 +12,7 @@ import com.cagudeloa.memorygame.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

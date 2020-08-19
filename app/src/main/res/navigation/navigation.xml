@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/memoryFragment"
-        android:name="com.cagudeloa.memorygame.MemoryFragment"
+        android:name="com.cagudeloa.memorygame.memoryGame.MemoryFragment"
         android:label="Memory Game"
         tools:layout="@layout/fragment_memory" />
     <fragment
         android:id="@+id/sequenceFragment"
-        android:name="com.cagudeloa.memorygame.SequenceFragment"
+        android:name="com.cagudeloa.memorygame.sequenceGame.SequenceFragment"
         android:label="Sequence Game"
         tools:layout="@layout/fragment_sequence" />
 </navigation>
