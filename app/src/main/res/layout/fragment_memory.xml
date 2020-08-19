@@ -80,7 +80,7 @@
             <TextView
                 android:id="@+id/timer_text"
                 style="@style/labels"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/timer_text"
                 app:layout_constraintEnd_toStartOf="@+id/main_button"
                 app:layout_constraintHorizontal_bias="0.5"
