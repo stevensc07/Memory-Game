@@ -17,4 +17,7 @@
     <string name="current_score">Score</string>
     <string name="highest_score">Best score</string>
     <string name="restart_score">200</string>
+    <string name="global_score">Global score</string>
+    <string name="memory_game_button">Memory Game</string>
+    <string name="sequence_game_button">Sequence Game</string>
 </resources>

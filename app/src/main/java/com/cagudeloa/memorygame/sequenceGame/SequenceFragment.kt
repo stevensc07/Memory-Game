@@ -23,6 +23,7 @@ class SequenceFragment : Fragment() {
 
 
         val sequenceGame = SequenceGame(binding)
+        sequenceGame.setScores()
 
         binding.playButton.setOnClickListener {
             sequenceGame.showSquares()

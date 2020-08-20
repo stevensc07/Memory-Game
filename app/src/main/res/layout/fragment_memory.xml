@@ -8,7 +8,7 @@
 
         <variable
             name="score"
-            type="com.cagudeloa.memorygame.memoryGame.Score" />
+            type="com.cagudeloa.memorygame.Score" />
     </data>
 
     <LinearLayout

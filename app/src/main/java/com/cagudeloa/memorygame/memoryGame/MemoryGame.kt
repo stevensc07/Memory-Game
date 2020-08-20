@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.cagudeloa.memorygame.MainActivity
 import com.cagudeloa.memorygame.R
+import com.cagudeloa.memorygame.Score
 import com.cagudeloa.memorygame.databinding.FragmentMemoryBinding
 
 class MemoryGame (
@@ -131,9 +132,9 @@ class MemoryGame (
                     callMe(item)
                     if(imageCounter==12){
                         // Check if player got a highest score than the current one
-                        if(binding.scoreText.text.toString().toInt() > binding.highestScoreText.text.toString().toInt()){
+                        if(score.currentScore > score.highestScore){
                             binding.invalidateAll()
-                            binding.highestScoreText.text = binding.scoreText.text
+                            score.highestScore = score.currentScore
                         }
                         binding.mainButton.visibility = View.VISIBLE
 
@@ -173,9 +174,8 @@ class MemoryGame (
             isFirstImage = !isFirstImage
             val image1Position = imagePosition(v)
             if(image1Position == currentSecondImage){
-                binding.invalidateAll()
                 // Correct choice, increment current score by 10 points
-                binding.scoreText.text = (binding.scoreText.text.toString().toInt()+10).toString()
+                updateScore(10)
                 chooseImageLocation(image1Position, animalLocation-1)
                 chooseImageLocation(alreadySelected, animalLocation-1)
                 imageResources[image1Position-1].isClickable = false
@@ -183,7 +183,7 @@ class MemoryGame (
                 if((binding.scoreText.text.toString().toInt() -20) <= 0){
                     gameOverDialog()
                     binding.invalidateAll()
-                    binding.scoreText.text = "200"
+                    score.currentScore = "200"
                     val resource =
                         R.drawable.question_mark
                     for (i in 0..11){
@@ -195,9 +195,8 @@ class MemoryGame (
                     initialCountDown = mainCounter
                     binding.mainButton.visibility = View.VISIBLE
                 }else{
-                    binding.invalidateAll()
                     // Incorrect choice, decrease current score by 20 points
-                    binding.scoreText.text = (binding.scoreText.text.toString().toInt()-20).toString()
+                    updateScore(-20)
                     chooseImageLocation(image1Position, 14)
                     chooseImageLocation(alreadySelected, 14)
                     imageResources[image1Position-1].isClickable = false
@@ -205,6 +204,11 @@ class MemoryGame (
             }
             //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySelected")
         }
+    }
+
+    private fun updateScore(value: Int){
+        binding.invalidateAll()
+        score.currentScore = (score.currentScore.toInt() + value).toString()
     }
 
     private fun gameOverDialog(){

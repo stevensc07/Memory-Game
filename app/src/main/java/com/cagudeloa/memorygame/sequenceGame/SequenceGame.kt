@@ -1,14 +1,17 @@
 package com.cagudeloa.memorygame.sequenceGame
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.cagudeloa.memorygame.R
+import com.cagudeloa.memorygame.Score
 import com.cagudeloa.memorygame.databinding.FragmentSequenceBinding
 import java.util.*
 import kotlin.concurrent.timerTask
 
 class SequenceGame(private var binding: FragmentSequenceBinding) {
+
+    // View binding for Scores
+    private val score = Score("100", "0")
 
     private var howManySquares = 2
     private var tappedSquares = 0
@@ -21,9 +24,15 @@ class SequenceGame(private var binding: FragmentSequenceBinding) {
         binding.squareText21, binding.squareText22, binding.squareText23, binding.squareText24, binding.squareText25
     )
 
+    fun setScores(){
+        binding.score = score
+    }
+
     // Here is where some squares will go visible for 1-2 seconds
     fun showSquares(){
         howManySquares++
+        binding.invalidateAll()
+        score.squares = "0 of $howManySquares"
         binding.playButton.visibility = View.INVISIBLE
         for (i in viewResources){
             i.setBackgroundResource(R.color.tilesColor)
@@ -58,28 +67,42 @@ class SequenceGame(private var binding: FragmentSequenceBinding) {
             item.setOnClickListener {
                 tappedSquares++
                 if(tappedSquares <= howManySquares){
+                    score.squares = "$tappedSquares of $howManySquares"
+                    val numberView = selectedView(item)
+                    // Search in the first $howManySquares items of $listNumbers to know if this should have been selected, else, mark with X
+                    if(listNumbers.indexOf(numberView) < howManySquares){
+                        //Log.v("testing", "good selection, paint as blue")
+                        item.setBackgroundResource(R.color.tileSelectedColor)
+                        // Update score
+                        updateScore(5)
+                    }else{
+                        //Log.v("testing", "Bad choice, mark with $numberView X")
+                        item.setBackgroundResource(R.drawable.x)
+                        // Update score
+                        updateScore(-50)
+                    }
+                    //Log.v("testing", "Elements: $listNumbers")
+                    //Log.v("testing", "Tapped view: $numberView. Squares: $howManySquares")
                     if(tappedSquares == howManySquares){
+                        score.squares = "Tap button to play"
                         binding.playButton.visibility = View.VISIBLE
+                        if(score.currentScore > score.highestScore){
+                            binding.invalidateAll()
+                            score.highestScore = score.currentScore
+                        }
                         tappedSquares = 0
                         // Make textViews non-clickable to avoid unwanted behaviours
                         for (i in viewResources){
                             i.isClickable = false
                         }
                     }
-                    val numberView = selectedView(item)
-                    // Search in the first $howManySquares items of $listNumbers to know if this should have been selected, else, mark with X
-                    if(listNumbers.indexOf(numberView) < howManySquares){
-                        //Log.v("testing", "good selection, paint as blue")
-                        item.setBackgroundResource(R.color.tileSelectedColor)
-                    }else{
-                        //Log.v("testing", "Bad choice, mark with $numberView X")
-                        item.setBackgroundResource(R.drawable.x)
-                    }
-                    //Log.v("testing", "Elements: $listNumbers")
-                    //Log.v("testing", "Tapped view: $numberView. Squares: $howManySquares")
                 }
             }
         }
+    }
+    private fun updateScore(value: Int){
+        binding.invalidateAll()
+        score.currentScore = (score.currentScore.toInt()+value).toString()
     }
 
     private fun selectedView(v: TextView): Int{
