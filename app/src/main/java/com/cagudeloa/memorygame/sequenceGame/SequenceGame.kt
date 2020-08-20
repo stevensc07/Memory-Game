@@ -108,12 +108,13 @@ class SequenceGame(private var binding: FragmentSequenceBinding, private var act
                     //Log.v("testing", "Elements: $listNumbers")
                     //Log.v("testing", "Tapped view: $numberView")
                     if(tappedSquares == howManySquares){
+                        binding.invalidateAll()
                         score.squares = "Tap button to play"
                         binding.playButton.visibility = View.VISIBLE
                         for (i in viewResources){
                             i.isClickable = false
                         }
-                        if(score.currentScore > score.highestScore){
+                        if(score.currentScore.toInt() > score.highestScore.toInt()){
                             binding.invalidateAll()
                             score.highestScore = score.currentScore
                         }

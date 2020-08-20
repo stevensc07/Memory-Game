@@ -144,13 +144,13 @@ class MemoryGame (
                     callMe(item)
                     if(imageCounter==12){
                         // Check if player got a highest score than the current one
-                        if(score.currentScore > score.highestScore){
+                        if(score.currentScore.toInt() > score.highestScore.toInt()){
                             binding.invalidateAll()
                             score.highestScore = score.currentScore
                         }
                         binding.mainButton.visibility = View.VISIBLE
 
-                        // Reduce countDown in one second for each new round, 3000 (3 seconds) minimum
+                        // Reduce countDown in one second for each new round, 2000 (3 seconds) minimum
                         if (initialCountDown != 2000.toLong())
                             initialCountDown -= 1000
                     }
