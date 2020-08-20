@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".sequenceGame.SequenceFragment">
 
     <data>
@@ -76,36 +76,36 @@
 
         <TextView
             android:id="@+id/square_text2"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text7"
             app:layout_constraintEnd_toStartOf="@+id/square_text3"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text1"
-            app:layout_constraintTop_toTopOf="@id/barrier"
-            style="@style/tiles" />
+            app:layout_constraintTop_toTopOf="@id/barrier" />
 
         <TextView
             android:id="@+id/square_text3"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text8"
             app:layout_constraintEnd_toStartOf="@+id/square_text4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text2"
-            app:layout_constraintTop_toTopOf="@id/barrier"
-            style="@style/tiles" />
+            app:layout_constraintTop_toTopOf="@id/barrier" />
 
         <TextView
             android:id="@+id/square_text4"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text9"
             app:layout_constraintEnd_toStartOf="@+id/square_text5"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text3"
-            app:layout_constraintTop_toTopOf="@id/barrier"
-            style="@style/tiles" />
+            app:layout_constraintTop_toTopOf="@id/barrier" />
 
         <TextView
             android:id="@+id/square_text5"
@@ -132,36 +132,36 @@
 
         <TextView
             android:id="@+id/square_text7"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text12"
             app:layout_constraintEnd_toStartOf="@+id/square_text8"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text6"
-            app:layout_constraintTop_toBottomOf="@+id/square_text2"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text2" />
 
         <TextView
             android:id="@+id/square_text8"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text13"
             app:layout_constraintEnd_toStartOf="@+id/square_text9"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text7"
-            app:layout_constraintTop_toBottomOf="@+id/square_text3"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text3" />
 
         <TextView
             android:id="@+id/square_text9"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text14"
             app:layout_constraintEnd_toStartOf="@+id/square_text10"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text8"
-            app:layout_constraintTop_toBottomOf="@+id/square_text4"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text4" />
 
         <TextView
             android:id="@+id/square_text10"
@@ -188,36 +188,36 @@
 
         <TextView
             android:id="@+id/square_text12"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text17"
             app:layout_constraintEnd_toStartOf="@+id/square_text13"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text11"
-            app:layout_constraintTop_toBottomOf="@+id/square_text7"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text7" />
 
         <TextView
             android:id="@+id/square_text13"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text18"
             app:layout_constraintEnd_toStartOf="@+id/square_text14"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text12"
-            app:layout_constraintTop_toBottomOf="@+id/square_text8"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text8" />
 
         <TextView
             android:id="@+id/square_text14"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text19"
             app:layout_constraintEnd_toStartOf="@+id/square_text15"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text13"
-            app:layout_constraintTop_toBottomOf="@+id/square_text9"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text9" />
 
         <TextView
             android:id="@+id/square_text15"
@@ -244,36 +244,36 @@
 
         <TextView
             android:id="@+id/square_text17"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text22"
             app:layout_constraintEnd_toStartOf="@+id/square_text18"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text16"
-            app:layout_constraintTop_toBottomOf="@+id/square_text12"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text12" />
 
         <TextView
             android:id="@+id/square_text18"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text23"
             app:layout_constraintEnd_toStartOf="@+id/square_text19"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text17"
-            app:layout_constraintTop_toBottomOf="@+id/square_text13"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text13" />
 
         <TextView
             android:id="@+id/square_text19"
+            style="@style/tiles"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@+id/square_text24"
             app:layout_constraintEnd_toStartOf="@+id/square_text20"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text18"
-            app:layout_constraintTop_toBottomOf="@+id/square_text14"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text14" />
 
         <TextView
             android:id="@+id/square_text20"
@@ -299,33 +299,33 @@
 
         <TextView
             android:id="@+id/square_text22"
+            style="@style/tiles"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
             app:layout_constraintEnd_toStartOf="@+id/square_text23"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text21"
-            app:layout_constraintTop_toBottomOf="@+id/square_text17"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text17" />
 
         <TextView
             android:id="@+id/square_text23"
+            style="@style/tiles"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
             app:layout_constraintEnd_toStartOf="@+id/square_text24"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text22"
-            app:layout_constraintTop_toBottomOf="@+id/square_text18"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text18" />
 
         <TextView
             android:id="@+id/square_text24"
+            style="@style/tiles"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
             app:layout_constraintEnd_toStartOf="@+id/square_text25"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text23"
-            app:layout_constraintTop_toBottomOf="@+id/square_text19"
-            style="@style/tiles" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text19" />
 
         <TextView
             android:id="@+id/square_text25"
@@ -351,6 +351,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/play"
+            android:contentDescription="@string/play_button"
             app:layout_constraintBottom_toBottomOf="@id/barrier"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -362,11 +363,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Number of squares:"
+            android:text="@string/number_of_squares"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/squares_text"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/squares_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/squares_text" />
 
         <TextView
             android:id="@+id/squares_text"
@@ -378,10 +380,10 @@
             android:textSize="26sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/squares_label_text"
             app:layout_constraintTop_toBottomOf="@+id/square_text23"
-            app:layout_constraintVertical_bias="0.641" />
+            app:layout_constraintVertical_bias="0.633" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

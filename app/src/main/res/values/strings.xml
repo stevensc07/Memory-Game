@@ -12,7 +12,6 @@
     <string name="grid_12">Grid 12</string>
     <string name="grid_11">Grid 11</string>
     <string name="grid_10">Grid 10</string>
-    <string name="play_button">Play button</string>
     <string name="timer_text">Timer</string>
     <string name="current_score">Score</string>
     <string name="highest_score">Best score</string>
@@ -20,4 +19,6 @@
     <string name="global_score">Global score</string>
     <string name="memory_game_button">Memory Game</string>
     <string name="sequence_game_button">Sequence Game</string>
+    <string name="number_of_squares">Number of squares:</string>
+    <string name="play_button">Play button</string>
 </resources>

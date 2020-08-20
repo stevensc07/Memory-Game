@@ -1,14 +1,17 @@
 package com.cagudeloa.memorygame.sequenceGame
 
+import android.content.DialogInterface
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import com.cagudeloa.memorygame.MainActivity
 import com.cagudeloa.memorygame.R
 import com.cagudeloa.memorygame.Score
 import com.cagudeloa.memorygame.databinding.FragmentSequenceBinding
 import java.util.*
 import kotlin.concurrent.timerTask
 
-class SequenceGame(private var binding: FragmentSequenceBinding) {
+class SequenceGame(private var binding: FragmentSequenceBinding, private var activity: MainActivity) {
 
     // View binding for Scores
     private val score = Score("100", "0")
@@ -78,8 +81,18 @@ class SequenceGame(private var binding: FragmentSequenceBinding) {
                     }else{
                         //Log.v("testing", "Bad choice, mark with $numberView X")
                         item.setBackgroundResource(R.drawable.x)
-                        // Update score
-                        updateScore(-50)
+                        // Update score, if not leading not 0 or <0 result
+                        if((score.currentScore.toInt()-50) > 0){
+                            updateScore(-50)
+                        }else{
+                            gameOverDialog()
+                            howManySquares = 0
+                            updateSquaresText()
+                            for (i in viewResources){
+                                i.setBackgroundResource(R.color.tilesColor)
+                                i.isClickable = false
+                            }
+                        }
                     }
                     //Log.v("testing", "Elements: $listNumbers")
                     //Log.v("testing", "Tapped view: $numberView. Squares: $howManySquares")
@@ -100,9 +113,24 @@ class SequenceGame(private var binding: FragmentSequenceBinding) {
             }
         }
     }
+
+    private fun updateSquaresText() {
+        binding.invalidateAll()
+        score.currentScore = "100"
+        score.squares = "Tap button to play"
+    }
+
     private fun updateScore(value: Int){
         binding.invalidateAll()
         score.currentScore = (score.currentScore.toInt()+value).toString()
+    }
+
+    private fun gameOverDialog(){
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle("Oh no")
+        builder.setMessage("Game Over")
+        builder.setPositiveButton("Play again") { _: DialogInterface, _ -> }
+        builder.show()
     }
 
     private fun selectedView(v: TextView): Int{
