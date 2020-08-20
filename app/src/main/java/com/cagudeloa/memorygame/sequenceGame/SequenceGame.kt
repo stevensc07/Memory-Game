@@ -1,6 +1,7 @@
 package com.cagudeloa.memorygame.sequenceGame
 
 import android.content.DialogInterface
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -34,6 +35,7 @@ class SequenceGame(private var binding: FragmentSequenceBinding, private var act
     // Here is where some squares will go visible for 1-2 seconds
     fun showSquares(){
         howManySquares++
+        tappedSquares = 0
         binding.invalidateAll()
         score.squares = "0 of $howManySquares"
         binding.playButton.visibility = View.INVISIBLE
@@ -57,6 +59,7 @@ class SequenceGame(private var binding: FragmentSequenceBinding, private var act
 
     // Here I'll hide the squares after 1-2 seconds
     fun hideSquares(){
+        // TODO: This fun is not working on older Android versions (like six), replace this and set images unclickable while counting
         Timer().schedule(timerTask {
             for (i in viewResources){
                 i.setBackgroundResource(R.color.tilesColor)
@@ -68,25 +71,29 @@ class SequenceGame(private var binding: FragmentSequenceBinding, private var act
     fun setListeners() {
         for (item in viewResources){
             item.setOnClickListener {
-                tappedSquares++
                 if(tappedSquares <= howManySquares){
-                    score.squares = "$tappedSquares of $howManySquares"
                     val numberView = selectedView(item)
+                    // Make the selected view, unclickable, no matter if correct or wrong choice
+                    viewResources[numberView].isClickable = false
                     // Search in the first $howManySquares items of $listNumbers to know if this should have been selected, else, mark with X
                     if(listNumbers.indexOf(numberView) < howManySquares){
                         //Log.v("testing", "good selection, paint as blue")
                         item.setBackgroundResource(R.color.tileSelectedColor)
                         // Update score
                         updateScore(5)
+                        tappedSquares++
+                        score.squares = "$tappedSquares of $howManySquares"
                     }else{
-                        //Log.v("testing", "Bad choice, mark with $numberView X")
+                        //Bad choice, mark with $numberView X
                         item.setBackgroundResource(R.drawable.x)
                         // Update score, if not leading not 0 or <0 result
-                        if((score.currentScore.toInt()-50) > 0){
-                            updateScore(-50)
+                        if((score.currentScore.toInt()-40) > 0){
+                            updateScore(-40)
                         }else{
+                            // Score reached or less, GAME OVER
+                            binding.playButton.visibility = View.VISIBLE
                             gameOverDialog()
-                            howManySquares = 0
+                            howManySquares = 1
                             updateSquaresText()
                             for (i in viewResources){
                                 i.setBackgroundResource(R.color.tilesColor)
@@ -95,19 +102,19 @@ class SequenceGame(private var binding: FragmentSequenceBinding, private var act
                         }
                     }
                     //Log.v("testing", "Elements: $listNumbers")
-                    //Log.v("testing", "Tapped view: $numberView. Squares: $howManySquares")
+                    //Log.v("testing", "Tapped view: $numberView")
                     if(tappedSquares == howManySquares){
                         score.squares = "Tap button to play"
                         binding.playButton.visibility = View.VISIBLE
+                        for (i in viewResources){
+                            i.isClickable = false
+                        }
                         if(score.currentScore > score.highestScore){
                             binding.invalidateAll()
                             score.highestScore = score.currentScore
                         }
                         tappedSquares = 0
                         // Make textViews non-clickable to avoid unwanted behaviours
-                        for (i in viewResources){
-                            i.isClickable = false
-                        }
                     }
                 }
             }

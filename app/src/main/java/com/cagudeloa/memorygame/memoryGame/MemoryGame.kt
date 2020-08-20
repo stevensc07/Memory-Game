@@ -1,5 +1,7 @@
 package com.cagudeloa.memorygame.memoryGame
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.DialogInterface
 import android.os.CountDownTimer
 import android.view.View
@@ -29,6 +31,7 @@ class MemoryGame (
     private var isFirstImage = true     // True if an image was selected and waiting for another to be selected
     private var currentSecondImage = 0  // I save here the image I expect user selects in the second selected image
     private var alreadySelected = 0
+    private var animation = true
 
     // 12 numbers for 12 imageView, these are randomize so that my animals go to different positions
     // How do I position the images in my 12 imageViews?
@@ -70,6 +73,7 @@ class MemoryGame (
     }
 
     fun showAnimals() {
+        animation = true
         imageCounter = 0
         listNumbers.shuffle()   // randomize my list
         selectedAnimal.shuffle()
@@ -77,6 +81,7 @@ class MemoryGame (
             chooseImageLocation(listNumbers[i-1], selectedAnimal[i]-1)
             chooseImageLocation(listNumbers[i], selectedAnimal[i]-1)
         }
+        animation = false
     }
 
     private fun chooseImageLocation(index: Int, selectedImage: Int){
@@ -93,6 +98,13 @@ class MemoryGame (
             10 -> imageResources[9]
             11 -> imageResources[10]
             else -> imageResources[11]
+        }
+        if(animation){
+            val animation: ObjectAnimator = ObjectAnimator.ofFloat(drawableResource, View.ALPHA, 0.0f, 1.0f)
+            animation.duration = 500
+            val animatorSet = AnimatorSet()
+            animatorSet.playTogether(animation)
+            animation.start()
         }
         drawableResource.setImageResource(animals[selectedImage])
     }
@@ -176,8 +188,10 @@ class MemoryGame (
             if(image1Position == currentSecondImage){
                 // Correct choice, increment current score by 10 points
                 updateScore(10)
+                animation = true
                 chooseImageLocation(image1Position, animalLocation-1)
                 chooseImageLocation(alreadySelected, animalLocation-1)
+                animation = false
                 imageResources[image1Position-1].isClickable = false
             }else{
                 if((binding.scoreText.text.toString().toInt() -20) <= 0){
