@@ -1,13 +1,14 @@
 package com.cagudeloa.memorygame.sequenceGame
 
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.cagudeloa.memorygame.R
 import com.cagudeloa.memorygame.databinding.FragmentSequenceBinding
 import java.util.*
 import kotlin.concurrent.timerTask
 
-class SequenceGame(binding: FragmentSequenceBinding) {
+class SequenceGame(private var binding: FragmentSequenceBinding) {
 
     private var howManySquares = 2
     private var tappedSquares = 0
@@ -23,6 +24,11 @@ class SequenceGame(binding: FragmentSequenceBinding) {
     // Here is where some squares will go visible for 1-2 seconds
     fun showSquares(){
         howManySquares++
+        binding.playButton.visibility = View.INVISIBLE
+        for (i in viewResources){
+            i.setBackgroundResource(R.color.tilesColor)
+            i.isClickable = false
+        }
         if(howManySquares <= 20){
             listNumbers.shuffle()
             for (i in 0 until howManySquares){
@@ -42,6 +48,7 @@ class SequenceGame(binding: FragmentSequenceBinding) {
         Timer().schedule(timerTask {
             for (i in viewResources){
                 i.setBackgroundResource(R.color.tilesColor)
+                i.isClickable = true
             }
         }, 1000)
     }
@@ -49,8 +56,28 @@ class SequenceGame(binding: FragmentSequenceBinding) {
     fun setListeners() {
         for (item in viewResources){
             item.setOnClickListener {
-                val numberView = selectedView(item)
-                Log.d("testing", "Tapped view: $numberView")
+                tappedSquares++
+                if(tappedSquares <= howManySquares){
+                    if(tappedSquares == howManySquares){
+                        binding.playButton.visibility = View.VISIBLE
+                        tappedSquares = 0
+                        // Make textViews non-clickable to avoid unwanted behaviours
+                        for (i in viewResources){
+                            i.isClickable = false
+                        }
+                    }
+                    val numberView = selectedView(item)
+                    // Search in the first $howManySquares items of $listNumbers to know if this should have been selected, else, mark with X
+                    if(listNumbers.indexOf(numberView) < howManySquares){
+                        //Log.v("testing", "good selection, paint as blue")
+                        item.setBackgroundResource(R.color.tileSelectedColor)
+                    }else{
+                        //Log.v("testing", "Bad choice, mark with $numberView X")
+                        item.setBackgroundResource(R.drawable.x)
+                    }
+                    //Log.v("testing", "Elements: $listNumbers")
+                    //Log.v("testing", "Tapped view: $numberView. Squares: $howManySquares")
+                }
             }
         }
     }
