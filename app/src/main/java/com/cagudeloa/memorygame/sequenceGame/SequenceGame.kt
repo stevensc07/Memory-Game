@@ -9,6 +9,10 @@ import com.cagudeloa.memorygame.MainActivity
 import com.cagudeloa.memorygame.R
 import com.cagudeloa.memorygame.Score
 import com.cagudeloa.memorygame.databinding.FragmentSequenceBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -59,13 +63,13 @@ class SequenceGame(private var binding: FragmentSequenceBinding, private var act
 
     // Here I'll hide the squares after 1-2 seconds
     fun hideSquares(){
-        // TODO: This fun is not working on older Android versions (like six), replace this and set images unclickable while counting
-        Timer().schedule(timerTask {
+        GlobalScope.launch (context = Dispatchers.Main){
+            delay(1000L)
             for (i in viewResources){
                 i.setBackgroundResource(R.color.tilesColor)
                 i.isClickable = true
             }
-        }, 1000)
+        }
     }
 
     fun setListeners() {
