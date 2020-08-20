@@ -12,7 +12,7 @@ import com.cagudeloa.memorygame.databinding.FragmentMemoryBinding
 
 class MemoryFragment : Fragment() {
 
-    lateinit var binding: FragmentMemoryBinding
+    private lateinit var binding: FragmentMemoryBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

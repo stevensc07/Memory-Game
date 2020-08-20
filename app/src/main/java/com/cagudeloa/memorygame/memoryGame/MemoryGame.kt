@@ -217,18 +217,18 @@ class MemoryGame (
 
     private fun imagePosition(view: ImageView): Int{
         return when (view.id) {
-            R.id.image1 -> "1"
-            R.id.image2 -> "2"
-            R.id.image3 -> "3"
-            R.id.image4 -> "4"
-            R.id.image5 -> "5"
-            R.id.image6 -> "6"
-            R.id.image7 -> "7"
-            R.id.image8 -> "8"
-            R.id.image9 -> "9"
-            R.id.image10 -> "10"
-            R.id.image11 -> "11"
-            else -> "12"
-        }.toInt()
+            R.id.image1 -> 1
+            R.id.image2 -> 2
+            R.id.image3 -> 3
+            R.id.image4 -> 4
+            R.id.image5 -> 5
+            R.id.image6 -> 6
+            R.id.image7 -> 7
+            R.id.image8 -> 8
+            R.id.image9 -> 9
+            R.id.image10 -> 10
+            R.id.image11 -> 11
+            else -> 12
+        }
     }
 }

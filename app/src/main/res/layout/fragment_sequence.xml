@@ -13,7 +13,7 @@
             style="@style/labels"
             android:layout_marginTop="16dp"
             android:text="@string/highest_score"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/play_button"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/score_label_text"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,11 +57,10 @@
 
         <TextView
             android:id="@+id/square_text1"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text6"
             app:layout_constraintEnd_toStartOf="@+id/square_text2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -70,49 +69,42 @@
 
         <TextView
             android:id="@+id/square_text2"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text7"
             app:layout_constraintEnd_toStartOf="@+id/square_text3"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text1"
-            app:layout_constraintTop_toTopOf="@id/barrier" />
+            app:layout_constraintTop_toTopOf="@id/barrier"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text3"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text8"
             app:layout_constraintEnd_toStartOf="@+id/square_text4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text2"
-            app:layout_constraintTop_toTopOf="@id/barrier" />
+            app:layout_constraintTop_toTopOf="@id/barrier"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text4"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text9"
             app:layout_constraintEnd_toStartOf="@+id/square_text5"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text3"
-            app:layout_constraintTop_toTopOf="@id/barrier" />
+            app:layout_constraintTop_toTopOf="@id/barrier"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text5"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -121,11 +113,10 @@
 
         <TextView
             android:id="@+id/square_text6"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text11"
             app:layout_constraintEnd_toStartOf="@+id/square_text7"
             app:layout_constraintHorizontal_bias="0.5"
@@ -134,49 +125,42 @@
 
         <TextView
             android:id="@+id/square_text7"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text12"
             app:layout_constraintEnd_toStartOf="@+id/square_text8"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text6"
-            app:layout_constraintTop_toBottomOf="@+id/square_text2" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text2"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text8"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text13"
             app:layout_constraintEnd_toStartOf="@+id/square_text9"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text7"
-            app:layout_constraintTop_toBottomOf="@+id/square_text3" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text3"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text9"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text14"
             app:layout_constraintEnd_toStartOf="@+id/square_text10"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text8"
-            app:layout_constraintTop_toBottomOf="@+id/square_text4" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text4"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text10"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -185,11 +169,10 @@
 
         <TextView
             android:id="@+id/square_text11"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text16"
             app:layout_constraintEnd_toStartOf="@+id/square_text12"
             app:layout_constraintHorizontal_bias="0.5"
@@ -198,49 +181,42 @@
 
         <TextView
             android:id="@+id/square_text12"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text17"
             app:layout_constraintEnd_toStartOf="@+id/square_text13"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text11"
-            app:layout_constraintTop_toBottomOf="@+id/square_text7" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text7"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text13"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text18"
             app:layout_constraintEnd_toStartOf="@+id/square_text14"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text12"
-            app:layout_constraintTop_toBottomOf="@+id/square_text8" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text8"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text14"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text19"
             app:layout_constraintEnd_toStartOf="@+id/square_text15"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text13"
-            app:layout_constraintTop_toBottomOf="@+id/square_text9" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text9"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text15"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -249,11 +225,10 @@
 
         <TextView
             android:id="@+id/square_text16"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text21"
             app:layout_constraintEnd_toStartOf="@+id/square_text17"
             app:layout_constraintHorizontal_bias="0.5"
@@ -262,49 +237,42 @@
 
         <TextView
             android:id="@+id/square_text17"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text22"
             app:layout_constraintEnd_toStartOf="@+id/square_text18"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text16"
-            app:layout_constraintTop_toBottomOf="@+id/square_text12" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text12"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text18"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text23"
             app:layout_constraintEnd_toStartOf="@+id/square_text19"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text17"
-            app:layout_constraintTop_toBottomOf="@+id/square_text13" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text13"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text19"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text24"
             app:layout_constraintEnd_toStartOf="@+id/square_text20"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text18"
-            app:layout_constraintTop_toBottomOf="@+id/square_text14" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text14"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text20"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/square_text25"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -313,11 +281,10 @@
 
         <TextView
             android:id="@+id/square_text21"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintEnd_toStartOf="@+id/square_text22"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -325,46 +292,39 @@
 
         <TextView
             android:id="@+id/square_text22"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintEnd_toStartOf="@+id/square_text23"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text21"
-            app:layout_constraintTop_toBottomOf="@+id/square_text17" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text17"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text23"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintEnd_toStartOf="@+id/square_text24"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text22"
-            app:layout_constraintTop_toBottomOf="@+id/square_text18" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text18"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text24"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
-            android:background="@color/colorAccent"
             app:layout_constraintEnd_toStartOf="@+id/square_text25"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text23"
-            app:layout_constraintTop_toBottomOf="@+id/square_text19" />
+            app:layout_constraintTop_toBottomOf="@+id/square_text19"
+            style="@style/tiles" />
 
         <TextView
             android:id="@+id/square_text25"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
+            style="@style/tiles"
             android:layout_marginTop="2dp"
-            android:background="@color/colorAccent"
+            android:layout_marginEnd="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/square_text24"
@@ -378,7 +338,7 @@
             tools:layout_editor_absoluteY="731dp" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/play_button"
             android:layout_width="65dp"
             android:layout_height="58dp"
             android:layout_marginTop="20dp"
@@ -389,6 +349,31 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/highest_label_text"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/squares_label_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Number of squares:"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/square_text23"
+            app:layout_constraintVertical_bias="0.629" />
+
+        <TextView
+            android:id="@+id/squares_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="0"
+            android:textColor="@android:color/black"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="@+id/squares_label_text"
+            app:layout_constraintStart_toEndOf="@+id/squares_label_text"
+            app:layout_constraintTop_toTopOf="@+id/squares_label_text" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

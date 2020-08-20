@@ -19,8 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/top_constraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#A1F1F1F1">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/main_button"
