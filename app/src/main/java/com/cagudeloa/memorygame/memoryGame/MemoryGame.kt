@@ -12,11 +12,11 @@ import com.cagudeloa.memorygame.R
 import com.cagudeloa.memorygame.Score
 import com.cagudeloa.memorygame.databinding.FragmentMemoryBinding
 
-class MemoryGame (
+class MemoryGame(
     private var binding: FragmentMemoryBinding,
     private var mainCounter: Long,
     private var activity: MainActivity
-){
+) {
     // These 3 vars are used for the counter
     private var initialCountDown = mainCounter
     private lateinit var countDownTimer: CountDownTimer
@@ -26,10 +26,13 @@ class MemoryGame (
     private val score = Score("200", "0")
 
     // Other values
-    private var imageCounter: Int = 0   // Tell me when all imageViews were selected, go to next round
+    private var imageCounter: Int =
+        0   // Tell me when all imageViews were selected, go to next round
     private var animalLocation = 0
-    private var isFirstImage = true     // True if an image was selected and waiting for another to be selected
-    private var currentSecondImage = 0  // I save here the image I expect user selects in the second selected image
+    private var isFirstImage =
+        true     // True if an image was selected and waiting for another to be selected
+    private var currentSecondImage =
+        0  // I save here the image I expect user selects in the second selected image
     private var alreadySelected = 0
     private var animation = true
 
@@ -41,10 +44,10 @@ class MemoryGame (
     private val listNumbers: MutableList<Int> = (1..12).toMutableList()
 
     // To randomize my 13 animals, so that they vary
-    private val selectedAnimal: MutableList<Int> =  (1..13).toMutableList()
+    private val selectedAnimal: MutableList<Int> = (1..13).toMutableList()
 
     // Here are my animals
-    private val animals = listOf<Int>(
+    private val animals = listOf(
         R.drawable.butterfly,
         R.drawable.color_parrot,
         R.drawable.dog,
@@ -62,13 +65,24 @@ class MemoryGame (
         R.drawable.select,      // To use it when an image is selected
         R.drawable.incorrect   // Tp use it when a couple of animals don't match
     )
+
     // My imageViews
     private val imageResources: List<ImageView> = listOf(
-        binding.image1, binding.image2, binding.image3, binding.image4, binding.image5, binding.image6,
-        binding.image7, binding.image8, binding.image9, binding.image10, binding.image11, binding.image12
+        binding.image1,
+        binding.image2,
+        binding.image3,
+        binding.image4,
+        binding.image5,
+        binding.image6,
+        binding.image7,
+        binding.image8,
+        binding.image9,
+        binding.image10,
+        binding.image11,
+        binding.image12
     )
 
-    fun setScores(){
+    fun setScores() {
         binding.score = score
     }
 
@@ -77,15 +91,15 @@ class MemoryGame (
         imageCounter = 0
         listNumbers.shuffle()   // randomize my list
         selectedAnimal.shuffle()
-        for (i in 1..11 step 2){    // Each of the image places
-            chooseImageLocation(listNumbers[i-1], selectedAnimal[i]-1)
-            chooseImageLocation(listNumbers[i], selectedAnimal[i]-1)
+        for (i in 1..11 step 2) {    // Each of the image places
+            chooseImageLocation(listNumbers[i - 1], selectedAnimal[i] - 1)
+            chooseImageLocation(listNumbers[i], selectedAnimal[i] - 1)
         }
         animation = false
     }
 
-    private fun chooseImageLocation(index: Int, selectedImage: Int){
-        val drawableResource = when(index){
+    private fun chooseImageLocation(index: Int, selectedImage: Int) {
+        val drawableResource = when (index) {
             1 -> imageResources[0]
             2 -> imageResources[1]
             3 -> imageResources[2]
@@ -99,8 +113,9 @@ class MemoryGame (
             11 -> imageResources[10]
             else -> imageResources[11]
         }
-        if(animation){
-            val animation: ObjectAnimator = ObjectAnimator.ofFloat(drawableResource, View.ALPHA, 0.0f, 1.0f)
+        if (animation) {
+            val animation: ObjectAnimator =
+                ObjectAnimator.ofFloat(drawableResource, View.ALPHA, 0.0f, 1.0f)
             animation.duration = 500
             val animatorSet = AnimatorSet()
             animatorSet.playTogether(animation)
@@ -109,26 +124,27 @@ class MemoryGame (
         drawableResource.setImageResource(animals[selectedImage])
     }
 
-    fun hideImages(){
-        countDownTimer = object: CountDownTimer(initialCountDown, countDownInterval){
+    fun hideImages() {
+        countDownTimer = object : CountDownTimer(initialCountDown, countDownInterval) {
             override fun onTick(p0: Long) {
-                val timeLeft = p0/1000+1
+                val timeLeft = p0 / 1000 + 1
                 binding.countDownText.text = timeLeft.toString()
                 //binding.mainButton.visibility = View.GONE
                 // Avoid player can click over images when visible
-                for (i in imageResources){
+                for (i in imageResources) {
                     i.isClickable = false
                 }
             }
 
             override fun onFinish() {
                 val resource = R.drawable.question_mark
-                binding.countDownText.text = ""
-                for (i in 0..11){
+                binding.invalidateAll()
+                binding.countDownText.text = "0"
+                for (i in 0..11) {
                     imageResources[i].setImageResource(resource)
                 }
                 // Image clickable back (for the user to actually be able to play)
-                for (i in imageResources){
+                for (i in imageResources) {
                     i.isClickable = true
                 }
             }
@@ -136,15 +152,15 @@ class MemoryGame (
         countDownTimer.start()
     }
 
-    fun setListeners(){
-        for (item in imageResources){
+    fun setListeners() {
+        for (item in imageResources) {
             item.setOnClickListener {
                 imageCounter++
-                if (imageCounter<=12){
+                if (imageCounter <= 12) {
                     callMe(item)
-                    if(imageCounter==12){
+                    if (imageCounter == 12) {
                         // Check if player got a highest score than the current one
-                        if(score.currentScore.toInt() > score.highestScore.toInt()){
+                        if (score.currentScore.toInt() > score.highestScore.toInt()) {
                             binding.invalidateAll()
                             score.highestScore = score.currentScore
                         }
@@ -159,9 +175,9 @@ class MemoryGame (
         }
     }
 
-    private fun callMe(v: ImageView){
+    private fun callMe(v: ImageView) {
         var image2Position: Int
-        if(isFirstImage) {
+        if (isFirstImage) {
             isFirstImage = !isFirstImage
             // Set the 'selected' drawable in the chosen imageView slot
             val image1Position = imagePosition(v)
@@ -178,54 +194,54 @@ class MemoryGame (
             currentSecondImage = image2Position
             ////Log.v("testing", "Tapped image at: $image1Position. Couple image at: $image2Position")
             chooseImageLocation(image1Position, 13)
-            imageResources[image1Position-1].isClickable = false
-        }else{
+            imageResources[image1Position - 1].isClickable = false
+        } else {
             // An image was selected already, verify the chosen image now, is same as previous
             // If so, show the images of that animals
             // Else, fill both imageViews with 'incorrect' drawable
             isFirstImage = !isFirstImage
             val image1Position = imagePosition(v)
-            if(image1Position == currentSecondImage){
+            if (image1Position == currentSecondImage) {
                 // Correct choice, increment current score by 10 points
                 updateScore(10)
                 animation = true
-                chooseImageLocation(image1Position, animalLocation-1)
-                chooseImageLocation(alreadySelected, animalLocation-1)
+                chooseImageLocation(image1Position, animalLocation - 1)
+                chooseImageLocation(alreadySelected, animalLocation - 1)
                 animation = false
-                imageResources[image1Position-1].isClickable = false
-            }else{
-                if((binding.scoreText.text.toString().toInt() -20) <= 0){
+                imageResources[image1Position - 1].isClickable = false
+            } else {
+                if ((binding.scoreText.text.toString().toInt() - 20) <= 0) {
                     gameOverDialog()
                     binding.invalidateAll()
                     score.currentScore = "200"
                     val resource =
                         R.drawable.question_mark
-                    for (i in 0..11){
+                    for (i in 0..11) {
                         imageResources[i].setImageResource(resource)
                     }
-                    for (i in imageResources){
+                    for (i in imageResources) {
                         i.isClickable = false
                     }
                     initialCountDown = mainCounter
                     binding.mainButton.visibility = View.VISIBLE
-                }else{
+                } else {
                     // Incorrect choice, decrease current score by 20 points
                     updateScore(-20)
                     chooseImageLocation(image1Position, 14)
                     chooseImageLocation(alreadySelected, 14)
-                    imageResources[image1Position-1].isClickable = false
+                    imageResources[image1Position - 1].isClickable = false
                 }
             }
             //Log.v("testing", "Animal at $animalLocation First animal is on $alreadySelected")
         }
     }
 
-    private fun updateScore(value: Int){
+    private fun updateScore(value: Int) {
         binding.invalidateAll()
         score.currentScore = (score.currentScore.toInt() + value).toString()
     }
 
-    private fun gameOverDialog(){
+    private fun gameOverDialog() {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Oh no")
         builder.setMessage("Game Over")
@@ -233,7 +249,7 @@ class MemoryGame (
         builder.show()
     }
 
-    private fun imagePosition(view: ImageView): Int{
+    private fun imagePosition(view: ImageView): Int {
         return when (view.id) {
             R.id.image1 -> 1
             R.id.image2 -> 2
