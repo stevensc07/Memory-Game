@@ -1,9 +1,6 @@
 package com.cagudeloa.memorygame.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface BestScoresDao {
@@ -11,7 +8,7 @@ interface BestScoresDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addScores(bestScores : BestScores)
 
-    @Query("SELECT * FROM  BestScores")
-    suspend fun getBestScores() : BestScores
-    
+    @Query("SELECT * FROM  BestScores WHERE id=:id")
+    suspend fun getBestScores(id: Int) : BestScores
+
 }

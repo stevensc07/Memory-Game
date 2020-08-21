@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 data class BestScores (
     @PrimaryKey
     val id: Int,
-    val memoryScore: String,
-    val sequenceScore: String
+    val score: String
 )
