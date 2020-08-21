@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.cagudeloa.memorygame.BaseFragment
 import com.cagudeloa.memorygame.MainActivity
 import com.cagudeloa.memorygame.R
 import com.cagudeloa.memorygame.databinding.FragmentSequenceBinding
 
-class SequenceFragment : Fragment() {
+class SequenceFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSequenceBinding
 
