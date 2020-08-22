@@ -18,7 +18,7 @@ class SequenceGame(
     // These 3 vars are used for the counter
     private var initialCountDown = mainCounter
     private lateinit var countDownTimer: CountDownTimer
-    private val countDownInterval: Long = 500
+    private var countDownInterval: Long = 500
 
     // View binding for Scores
     private val score = Score("100", "0")
@@ -69,14 +69,16 @@ class SequenceGame(
             i.setBackgroundResource(R.color.tilesColor)
             i.isClickable = false
         }
-        if (howManySquares <= 20) {
+        if (howManySquares <= 15) {
             listNumbers.shuffle()
             for (i in 0 until howManySquares) {
                 viewResources[listNumbers[i]].setBackgroundResource(R.color.tileSelectedColor)
             }
         } else {
             // Already 20 items selected and well answered, start again
-            howManySquares = 2
+            howManySquares = 3
+            initialCountDown = 400L
+            countDownInterval = 200L
             for (i in 0 until howManySquares) {
                 viewResources[listNumbers[i]].setBackgroundResource(R.color.tileSelectedColor)
             }
