@@ -60,9 +60,7 @@ class MemoryFragment : BaseFragment() {
                     valueFromDB = bestScores!!.score
                     binding.invalidateAll()
                     binding.highestScoreText.text = valueFromDB
-                    Log.v("testing", "From database -> $valueFromDB")
-                }else{
-                    Log.v("testing", "Database empty")
+                    //Log.v("testing", "From database -> $valueFromDB")
                 }
             }
         }
@@ -75,7 +73,7 @@ class MemoryFragment : BaseFragment() {
             val bestScores = BestScores(1, score)
             context?.let {
                 BestScoresDB(it).getBestScoresDao().addScores(bestScores)
-                Log.v("testing", "To database -> $bestScores")
+                //Log.v("testing", "To database -> $bestScores")
             }
         }
     }
