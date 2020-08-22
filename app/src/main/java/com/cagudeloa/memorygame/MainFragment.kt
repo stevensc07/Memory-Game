@@ -50,15 +50,18 @@ class MainFragment : BaseFragment() {
             context?.let {
                 bestScore1 = BestScoresDB(it).getBestScoresDao().getBestScores(id=1)
                 bestScore2 = BestScoresDB(it).getBestScoresDao().getBestScores(id=2)
-                if(bestScore1 != null && bestScore2 != null){
+                if(bestScore1 != null){
                     valueFromDB1 = bestScore1!!.score.toInt()
-                    valueFromDB2 = bestScore2!!.score.toInt()
-                    binding.invalidateAll()
-                    binding.scoreView.text = (valueFromDB1 + valueFromDB2).toString()
-                    //Log.v("testing", "From database -> ${(valueFromDB1 + valueFromDB2)}")
                 }else{
-                    binding.scoreView.text = "0"
+                    valueFromDB1 = 0
                 }
+                if(bestScore2 != null){
+                    valueFromDB2 = bestScore2!!.score.toInt()
+                }else{
+                    valueFromDB2 = 0
+                }
+                binding.invalidateAll()
+                binding.scoreView.text = (valueFromDB1 + valueFromDB2).toString()
             }
         }
     }
