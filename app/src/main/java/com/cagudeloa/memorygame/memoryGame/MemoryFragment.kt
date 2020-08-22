@@ -51,11 +51,19 @@ class MemoryFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var bestScores: BestScores
-        GlobalScope.launch {
+        var bestScores: BestScores?
+        var valueFromDB: String
+        launch {
             context?.let {
                 bestScores = BestScoresDB(it).getBestScoresDao().getBestScores(id=1)
-                Log.v("testing coming info", "The data from database-> $bestScores")
+                if(bestScores != null){
+                    valueFromDB = bestScores!!.score
+                    binding.invalidateAll()
+                    binding.highestScoreText.text = valueFromDB
+                    Log.v("testing", "From database -> $valueFromDB")
+                }else{
+                    Log.v("testing", "Database empty")
+                }
             }
         }
     }
@@ -63,10 +71,11 @@ class MemoryFragment : BaseFragment() {
     override fun onStop() {
         super.onStop()
         GlobalScope.launch {
-            val bestScores = BestScores(1, "200")
+            val score = binding.highestScoreText.text.toString()
+            val bestScores = BestScores(1, score)
             context?.let {
                 BestScoresDB(it).getBestScoresDao().addScores(bestScores)
-                Log.v("testing entering info", "Info saved -> $bestScores")
+                Log.v("testing", "To database -> $bestScores")
             }
         }
     }
