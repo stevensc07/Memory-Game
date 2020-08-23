@@ -31,7 +31,7 @@ class MemoryFragment : BaseFragment() {
         )
 
         val counter: Long =
-            8000 // initial countDown will be 8 seconds, decreases one second per round
+            6000 // initial countDown will be 6 seconds, decreases one second per round
         val memoryGame = MemoryGame(
             binding,
             counter,

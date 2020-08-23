@@ -166,9 +166,9 @@ class MemoryGame(
                         }
                         binding.mainButton.visibility = View.VISIBLE
 
-                        // Reduce countDown in one second for each new round, 2000 (3 seconds) minimum
-                        if (initialCountDown != 2000.toLong())
-                            initialCountDown -= 1000
+                        // Reduce countDown in one second for each new round, 2000 (2 seconds) minimum
+                        if (initialCountDown != 2000L)
+                            initialCountDown -= 1000L
                     }
                 }
             }

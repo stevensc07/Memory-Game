@@ -21,7 +21,8 @@
     <string name="sequence_game_button">Sequence Game</string>
     <string name="number_of_squares">Number of squares:</string>
     <string name="play_button">Play button</string>
-    <string name="clear_memory_game_score">Clear memory game score</string>
-    <string name="clear_sequence_game_score">Clear sequence game score</string>
+    <string name="share_text">Hey!\nMy global score in \'Memory Games\' is %1$s.\n\nTry to beat my score and show me ;)</string>
+    <string name="clear_memory_game_score">Clear Memory game score</string>
+    <string name="clear_sequence_game_score">Clear Sequence game score</string>
     <string name="clear_all_scores">Clear all scores</string>
 </resources>

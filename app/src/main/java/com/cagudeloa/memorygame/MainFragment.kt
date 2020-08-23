@@ -1,9 +1,13 @@
 package com.cagudeloa.memorygame
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -55,8 +59,21 @@ class MainFragment : BaseFragment() {
                 getScoresFromDB()
                 Toast.makeText(context, "Sequence Game score cleared", Toast.LENGTH_LONG).show()
             }
+            R.id.share -> onShare()
         }
-        return true
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun onShare() {
+        val shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
+            .setText(getString(R.string.share_text, binding.scoreView.text.toString()))
+            .setType("text/plain")
+            .intent
+        try {
+            startActivity(shareIntent)
+        } catch (ex: ActivityNotFoundException) {
+            Toast.makeText(requireActivity(), "Couldn't share, try later :)", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun eraseValuesFromDB(id: Int){
@@ -89,16 +106,8 @@ class MainFragment : BaseFragment() {
             context?.let {
                 bestScore1 = BestScoresDB(it).getBestScoresDao().getBestScores(id=1)
                 bestScore2 = BestScoresDB(it).getBestScoresDao().getBestScores(id=2)
-                if(bestScore1 != null){
-                    valueFromDB1 = bestScore1!!.score.toInt()
-                }else{
-                    valueFromDB1 = 0
-                }
-                if(bestScore2 != null){
-                    valueFromDB2 = bestScore2!!.score.toInt()
-                }else{
-                    valueFromDB2 = 0
-                }
+                valueFromDB1 = if(bestScore1 != null) bestScore1!!.score.toInt() else 0
+                valueFromDB2 = if(bestScore2 != null) bestScore2!!.score.toInt() else 0
                 binding.invalidateAll()
                 binding.scoreView.text = (valueFromDB1 + valueFromDB2).toString()
             }
