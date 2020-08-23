@@ -8,49 +8,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/score_label_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/global_score"
             android:textSize="32sp"
+            android:layout_marginTop="50dp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toTopOf="@+id/score_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/score_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/black"
             android:textSize="45sp"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toTopOf="@+id/memory_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/score_label_view" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/memory_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memory_game_button"
             android:padding="16dp"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginTop="50dp"
             app:layout_constraintBottom_toTopOf="@+id/sequence_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/score_view" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/sequence_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sequence_game_button"
             android:padding="16dp"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
