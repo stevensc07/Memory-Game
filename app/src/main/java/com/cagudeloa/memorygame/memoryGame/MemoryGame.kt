@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.DialogInterface
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
@@ -194,13 +195,18 @@ class MemoryGame(
             currentSecondImage = image2Position
             ////Log.v("testing", "Tapped image at: $image1Position. Couple image at: $image2Position")
             chooseImageLocation(image1Position, 13)
-            imageResources[image1Position - 1].isClickable = false
+            //imageResources[image1Position - 1].isClickable = false
         } else {
             // An image was selected already, verify the chosen image now, is same as previous
             // If so, show the images of that animals
             // Else, fill both imageViews with 'incorrect' drawable
             isFirstImage = !isFirstImage
             val image1Position = imagePosition(v)
+            // If user selects the same image that was already selected, make it unselected
+            if(alreadySelected == image1Position){
+                imageResources[image1Position-1].setImageResource(R.drawable.question_mark)
+                imageCounter-=2
+            }else
             if (image1Position == currentSecondImage) {
                 // Correct choice, increment current score by 10 points
                 updateScore(10)
@@ -208,8 +214,10 @@ class MemoryGame(
                 chooseImageLocation(image1Position, animalLocation - 1)
                 chooseImageLocation(alreadySelected, animalLocation - 1)
                 animation = false
+                imageResources[alreadySelected - 1].isClickable = false
                 imageResources[image1Position - 1].isClickable = false
             } else {
+                // Game Over
                 if ((binding.scoreText.text.toString().toInt() - 20) <= 0) {
                     gameOverDialog()
                     binding.invalidateAll()
@@ -229,6 +237,7 @@ class MemoryGame(
                     updateScore(-20)
                     chooseImageLocation(image1Position, 14)
                     chooseImageLocation(alreadySelected, 14)
+                    imageResources[alreadySelected - 1].isClickable = false
                     imageResources[image1Position - 1].isClickable = false
                 }
             }
