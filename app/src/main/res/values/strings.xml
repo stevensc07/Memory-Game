@@ -25,4 +25,5 @@
     <string name="clear_memory_game_score">Clear Memory game score</string>
     <string name="clear_sequence_game_score">Clear Sequence game score</string>
     <string name="clear_all_scores">Clear all scores</string>
+    <string name="button">MEMORY GAME</string>
 </resources>
